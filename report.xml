@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="4" time="6.330" timestamp="2025-01-20T13:24:34.141715+05:30" hostname="Tilaks-MacBook-Air.local"><testcase classname="baserock_generated_tests.baserock_test_credentials" name="test_fetch_tokens" time="1.231"><failure message="assert '{&quot;error_desc...alid_client&quot;}' == '{&quot;error_desc...alid_client&quot;}'&#10;  &#10;  - {&quot;error_description&quot;:&quot;Invalid client or client credentials.&quot;,&quot;error&quot;:&quot;invalid_client&quot;}&#10;  + {&quot;error_description&quot;:&quot;Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked&quot;,&quot;error&quot;:&quot;invalid_client&quot;}">mock_httpclient = &lt;MagicMock name='HTTPClient' id='4393436160'&gt;
+credentials = Credentials(access_token_='******', auth_base_url='https://identity.paloaltonetworks.com/as/authorization.oauth2', cac...03844740&gt;, token_url='https://api.paloaltonetworks.com', _credentials_found_in_instance=True, _httpclient=HTTPClient())
+
+    @patch('pan_cortex_data_lake.credentials.HTTPClient')
+    def test_fetch_tokens(mock_httpclient, credentials):
+        mock_response = MagicMock()
+        mock_response.ok = True
+        mock_response.json.return_value = {
+            'error': 'invalid_client',
+            'error_description': 'Invalid client or client credentials.'
+        }
+        mock_response.text = '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+        mock_httpclient.return_value.request.return_value = mock_response
+    
+        with pytest.raises(CortexError) as exc_info:
+            credentials.fetch_tokens(code='test_code')
+    
+&gt;       assert str(exc_info.value) == '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+E       assert '{"error_desc...alid_client"}' == '{"error_desc...alid_client"}'
+E         
+E         - {"error_description":"Invalid client or client credentials.","error":"invalid_client"}
+E         + {"error_description":"Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked","error":"invalid_client"}
+
+pan_cortex_data_lake/baserock_generated_tests/baserock_test_credentials.py:37: AssertionError</failure></testcase><testcase classname="baserock_generated_tests.baserock_test_credentials" name="test_refresh_with_refresh_token" time="1.192"><failure message="assert '{&quot;error_desc...alid_client&quot;}' == '{&quot;error_desc...alid_client&quot;}'&#10;  &#10;  - {&quot;error_description&quot;:&quot;Invalid client or client credentials.&quot;,&quot;error&quot;:&quot;invalid_client&quot;}&#10;  + {&quot;error_description&quot;:&quot;Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked&quot;,&quot;error&quot;:&quot;invalid_client&quot;}">mock_httpclient = &lt;MagicMock name='HTTPClient' id='4394001040'&gt;
+credentials = Credentials(access_token_='******', auth_base_url='https://identity.paloaltonetworks.com/as/authorization.oauth2', cac...05de7480&gt;, token_url='https://api.paloaltonetworks.com', _credentials_found_in_instance=True, _httpclient=HTTPClient())
+
+    @patch('pan_cortex_data_lake.credentials.HTTPClient')
+    def test_refresh_with_refresh_token(mock_httpclient, credentials):
+        mock_response = MagicMock()
+        mock_response.ok = True
+        mock_response.json.return_value = {
+            'error': 'invalid_client',
+            'error_description': 'Invalid client or client credentials.'
+        }
+        mock_response.text = '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+        mock_httpclient.return_value.request.return_value = mock_response
+    
+        with pytest.raises(CortexError) as exc_info:
+            credentials.refresh()
+    
+&gt;       assert str(exc_info.value) == '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+E       assert '{"error_desc...alid_client"}' == '{"error_desc...alid_client"}'
+E         
+E         - {"error_description":"Invalid client or client credentials.","error":"invalid_client"}
+E         + {"error_description":"Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked","error":"invalid_client"}
+
+pan_cortex_data_lake/baserock_generated_tests/baserock_test_credentials.py:53: AssertionError</failure></testcase><testcase classname="baserock_generated_tests.baserock_test_credentials" name="test_revoke_access_token" time="1.293"><failure message="assert '{&quot;error_desc...alid_client&quot;}' == '{&quot;error_desc...alid_client&quot;}'&#10;  &#10;  - {&quot;error_description&quot;:&quot;Invalid client or client credentials.&quot;,&quot;error&quot;:&quot;invalid_client&quot;}&#10;  + {&quot;error_description&quot;:&quot;Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked&quot;,&quot;error&quot;:&quot;invalid_client&quot;}">mock_httpclient = &lt;MagicMock name='HTTPClient' id='4393659424'&gt;
+credentials = Credentials(access_token_='******', auth_base_url='https://identity.paloaltonetworks.com/as/authorization.oauth2', cac...046956c0&gt;, token_url='https://api.paloaltonetworks.com', _credentials_found_in_instance=True, _httpclient=HTTPClient())
+
+    @patch('pan_cortex_data_lake.credentials.HTTPClient')
+    def test_revoke_access_token(mock_httpclient, credentials):
+        mock_response = MagicMock()
+        mock_response.ok = True
+        mock_response.json.return_value = {
+            'error': 'invalid_client',
+            'error_description': 'Invalid client or client credentials.'
+        }
+        mock_response.text = '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+        mock_httpclient.return_value.request.return_value = mock_response
+    
+        with pytest.raises(CortexError) as exc_info:
+            credentials.revoke_access_token()
+    
+&gt;       assert str(exc_info.value) == '{"error_description":"Invalid client or client credentials.","error":"invalid_client"}'
+E       assert '{"error_desc...alid_client"}' == '{"error_desc...alid_client"}'
+E         
+E         - {"error_description":"Invalid client or client credentials.","error":"invalid_client"}
+E         + {"error_description":"Account temporarily locked because number of failed logins was exceeded or max number of invalid tokens was attempted to be revoked","error":"invalid_client"}
+
+pan_cortex_data_lake/baserock_generated_tests/baserock_test_credentials.py:69: AssertionError</failure></testcase><testcase classname="baserock_generated_tests.baserock_test_credentials" name="test_revoke_refresh_token" time="1.231" /></testsuite></testsuites>
