@@ -1,0 +1,2 @@
+[tool.pytest.ini_options]
+pythonpath = [ "pan_cortex_data_lake",]

@@ -73,3 +73,5 @@ target/
 
 # pydoc-markdown
 docs/**/*.md
+
+.baserock
